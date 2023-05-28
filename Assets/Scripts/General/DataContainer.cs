@@ -9,6 +9,7 @@ namespace General
         public static DataContainer dataContainer;
 
         public WalletManager walletManager;
+        public LeaderboardManager leaderboardManager;
 
         private void Awake() => dataContainer = this;
 
