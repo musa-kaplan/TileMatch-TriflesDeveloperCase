@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a5159c612748cfb75ce21d77217736, type: 3}
+  m_Name: Level2
+  m_EditorClassIdentifier: 
+  index: 1
+  isUnlocked: 1
+  isCompleted: 0
+  earnedStars: 0
+  layers:
+  - piles:
+    - pileObject: {fileID: 0}
+      pilePosition: {x: 0, y: 0}
+    - pileObject: {fileID: 0}
+      pilePosition: {x: 0, y: 0}
+  lockedSprite: {fileID: 21300000, guid: 1233f394cda6245868bfa4f60a404868, type: 3}
+  nonStarSprite: {fileID: 21300000, guid: 3b988e155761e4104a991ec98f9174ba, type: 3}
+  starSprite: {fileID: 21300000, guid: eef9b7fdf80b7441c8e5c5c22095c30d, type: 3}
