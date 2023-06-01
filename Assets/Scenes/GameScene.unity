@@ -4397,6 +4397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currState: 0
+  currentLevel: {fileID: 0}
   gameTimer: 0
 --- !u!4 &1704163643
 Transform:
