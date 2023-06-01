@@ -21,7 +21,7 @@ namespace Ui.InGame
         {
             dataContainer = DataContainer.dataContainer;
             SetCurrencyUis();
-            levelText.text = "Level " + PlayerPrefs.GetInt("Level");
+            levelText.text = "Level " + (PlayerPrefs.GetInt("Level") + 1);
         }
 
         private void SetCurrencyUis()

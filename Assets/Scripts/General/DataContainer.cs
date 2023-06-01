@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Data;
-using MusaUtils.Pooling;
+using InGame;
 using UnityEngine;
 
 namespace General
@@ -11,9 +12,12 @@ namespace General
         public static DataContainer dataContainer;
 
         public List<LevelData> levels;
-        public MonoPools blockPool;
+        public BoardManager boardManager;
+        public ParticleManager particleManager;
         public WalletManager walletManager;
         public LeaderboardManager leaderboardManager;
+
+        [HideInInspector] public bool isBlockClicked;
 
         private void Awake()
         {
@@ -31,6 +35,13 @@ namespace General
             levels[2].Save();
             
             DontDestroyOnLoad(this.gameObject);
+        }
+
+        public async void BlockClicked()
+        {
+            isBlockClicked = true;
+            await UniTask.Delay(TimeSpan.FromSeconds(.15f));
+            isBlockClicked = false;
         }
 
         private void OnEnable()

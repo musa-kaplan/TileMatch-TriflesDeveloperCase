@@ -17,20 +17,18 @@ MonoBehaviour:
   isCompleted: 0
   earnedStars: 0
   layers:
-  - blocks:
-    - blockIndex: 0
-      blockSprite: {fileID: 21300000, guid: e6219076a14f39943923e9ca70b86373, type: 3}
-    - blockIndex: 1
-      blockSprite: {fileID: 21300000, guid: 2499494dbc40e954da94ad907b9eaba7, type: 3}
-    piles:
-    - pileObject: {fileID: 11400000, guid: c96557276f601490badadb07b571bd7c, type: 2}
+  - piles:
+    - pileObject: {fileID: 8483987552992381569, guid: 78711de307b4f480689c8558eb80538f,
+        type: 3}
       pilePosition: {x: 0, y: 0}
-    - pileObject: {fileID: 11400000, guid: c96557276f601490badadb07b571bd7c, type: 2}
-      pilePosition: {x: 0, y: 1}
-    - pileObject: {fileID: 11400000, guid: c96557276f601490badadb07b571bd7c, type: 2}
-      pilePosition: {x: 1, y: 0}
-    - pileObject: {fileID: 11400000, guid: c96557276f601490badadb07b571bd7c, type: 2}
+    - pileObject: {fileID: 8483987552992381569, guid: 545900a3399b3413f986537c9b6fb70b,
+        type: 3}
       pilePosition: {x: 1, y: 1}
+  blockTypes:
+  - blockIndex: 0
+    blockSprite: {fileID: 21300000, guid: e6219076a14f39943923e9ca70b86373, type: 3}
+  - blockIndex: 1
+    blockSprite: {fileID: 21300000, guid: 2499494dbc40e954da94ad907b9eaba7, type: 3}
   lockedSprite: {fileID: 21300000, guid: 1233f394cda6245868bfa4f60a404868, type: 3}
   nonStarSprite: {fileID: 21300000, guid: 3b988e155761e4104a991ec98f9174ba, type: 3}
   starSprite: {fileID: 21300000, guid: eef9b7fdf80b7441c8e5c5c22095c30d, type: 3}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using General;
+using InGame;
 using UnityEngine;
 
 namespace Data
@@ -13,6 +14,9 @@ namespace Data
         [HideInInspector] public bool isCompleted;
         [HideInInspector] public int earnedStars;
         public List<LayerInfo> layers;
+        public List<BlockInfo> blockTypes;
+        public float threeStarTimeLimit;
+        public float twoStarTimeLimit;
 
         [Header("Visuals")] 
         public Sprite lockedSprite;
