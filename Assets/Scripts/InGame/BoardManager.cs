@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using MoreMountains.NiceVibrations;
 using MusaUtils.Templates.HyperCasual;
 using UnityEngine;
 
@@ -71,6 +72,7 @@ namespace InGame
             if(isBlasting) return;
             if (currBlockCount >= slots.Count)
             {
+                if(PlayerPrefs.GetInt("Haptic").Equals(1)){MMVibrationManager.Haptic(HapticTypes.Failure);}
                 GameEvents.StateChanged(GameStates.Lose);
             }
 

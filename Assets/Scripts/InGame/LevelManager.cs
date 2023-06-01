@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Data;
 using General;
+using MoreMountains.NiceVibrations;
 using MusaUtils;
 using MusaUtils.Pooling;
 using MusaUtils.Templates.HyperCasual;
@@ -126,6 +127,7 @@ namespace InGame
                 currentLevel.Save();
 
                 await UniTask.Delay(TimeSpan.FromSeconds(2f));
+                if(PlayerPrefs.GetInt("Haptic").Equals(1)){MMVibrationManager.Haptic(HapticTypes.Success);}
                 GameEvents.StateChanged(GameStates.Win);
             }
         }

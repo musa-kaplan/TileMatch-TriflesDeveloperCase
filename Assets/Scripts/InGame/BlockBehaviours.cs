@@ -3,10 +3,9 @@ using Cysharp.Threading.Tasks;
 using Data;
 using DG.Tweening;
 using General;
+using MoreMountains.NiceVibrations;
 using MusaUtils.Templates.HyperCasual;
-using Ui;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace InGame
 {
@@ -44,6 +43,7 @@ namespace InGame
 
         private async void LetsHopUp()
         {
+            if(PlayerPrefs.GetInt("Haptic").Equals(1)){MMVibrationManager.Haptic(HapticTypes.Selection);}
             transform.DOPunchScale(Vector3.one * .1f, .2f, 1);
             transform.DOMove(dataContainer.boardManager.GiveSlot().position, .4f);
 
@@ -58,6 +58,7 @@ namespace InGame
         {
             if (b.Equals(this))
             {
+                if(PlayerPrefs.GetInt("Haptic").Equals(1)){MMVibrationManager.Haptic(HapticTypes.HeavyImpact);}
                 var position = transform.position;
                 CurrencyInteraction.CurrencyGained(CurrencyType.Gold, 1, position);
                 dataContainer.particleManager.PlayParticle(ParticleTypes.BlockBlast, position);
