@@ -24,6 +24,10 @@ namespace Data
                 {
                     c.amount = PlayerPrefs.GetInt("Currency" + c.currencyType);
                 }
+                else
+                {
+                    c.amount = 0;
+                }
             }
         }
     }

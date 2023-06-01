@@ -12,9 +12,11 @@ namespace General
         public static DataContainer dataContainer;
 
         public List<LevelData> levels;
+        public LevelManager levelManager;
         public BoardManager boardManager;
         public ParticleManager particleManager;
         public WalletManager walletManager;
+        public GeneralVisualData generalVisualData;
         public LeaderboardManager leaderboardManager;
 
         [HideInInspector] public bool isBlockClicked;
@@ -31,10 +33,8 @@ namespace General
                 return;
             }
 
-            levels[2].isUnlocked = true;
-            levels[2].Save();
-            
-            DontDestroyOnLoad(this.gameObject);
+            levels[0].isUnlocked = true;
+            levels[0].Save();
         }
 
         public async void BlockClicked()

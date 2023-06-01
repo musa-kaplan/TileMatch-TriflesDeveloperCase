@@ -35,6 +35,19 @@ namespace MusaUtils.Pooling
         {
             return FindPool(pool) ? _currentPool : null;
         }
+        
+        public void RemovePool(MonoPools a)
+        {
+            _pools ??= new List<MonoPools>();
+            if (FindPool(a))
+            {
+                _instance._pools.Remove(GetPool(a));
+            }
+            else
+            {
+                Debug.LogError("You Dont Have a Pool Named: " + a._name);
+            }
+        }
 
         public GameObject GetObject(MonoPools pool)
         {

@@ -1,4 +1,5 @@
 using System;
+using MusaUtils.Pooling;
 using UnityEngine;
 
 namespace Data
@@ -13,6 +14,7 @@ namespace Data
     public class CurrencyInfo
     {
         public CurrencyType currencyType;
+        public MonoPools currencyPool;
         public int amount;
         
         [Header("Visuals")]
@@ -23,8 +25,7 @@ namespace Data
     {
         public static event Action<CurrencyType, int> onIncreaseCurrency;
         public static void IncreaseCurrency(CurrencyType ct, int a) => onIncreaseCurrency?.Invoke(ct, a);
-
-
+        
         public static event Action<CurrencyType, int> onReduceCurrency;
         public static void ReduceCurrency(CurrencyType ct, int a) => onReduceCurrency?.Invoke(ct, a);
 

@@ -32,11 +32,11 @@ namespace Data
 
         public void Load()
         {
-            isUnlocked = PlayerPrefs.HasKey("Level" + index + "Unlocked") && 
-                         PlayerPrefs.GetInt("Level" + index + "Unlocked").Equals(1);
+            isUnlocked = PlayerPrefs.HasKey("Level" + index + "Unlocked") ? 
+                         PlayerPrefs.GetInt("Level" + index + "Unlocked").Equals(1) : false;
             
-            isCompleted = PlayerPrefs.HasKey("Level" + index + "Completed") && 
-                          PlayerPrefs.GetInt("Level" + index + "Completed").Equals(1);
+            isCompleted = PlayerPrefs.HasKey("Level" + index + "Completed") ? 
+                          PlayerPrefs.GetInt("Level" + index + "Completed").Equals(1) : false;
             
             earnedStars = PlayerPrefs.HasKey("Level" + index + "EarnedStars") ? 
                 PlayerPrefs.GetInt("Level" + index + "EarnedStars") : 0;

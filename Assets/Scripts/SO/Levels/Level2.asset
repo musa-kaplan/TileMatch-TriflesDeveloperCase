@@ -13,25 +13,29 @@ MonoBehaviour:
   m_Name: Level2
   m_EditorClassIdentifier: 
   index: 1
-  isUnlocked: 1
+  isUnlocked: 0
   isCompleted: 0
   earnedStars: 0
   layers:
   - piles:
     - pileObject: {fileID: 8483987552992381569, guid: 545900a3399b3413f986537c9b6fb70b,
         type: 3}
-      pilePosition: {x: 0.5, y: 0.5}
+      pilePosition: {x: 1, y: 1}
   - piles:
     - pileObject: {fileID: 8483987552992381569, guid: e3776887203484f679074a13b6666918,
         type: 3}
-      pilePosition: {x: 0, y: 0.75}
+      pilePosition: {x: 0, y: 0}
+  - piles:
+    - pileObject: {fileID: 8483987552992381569, guid: d6c5372a0ddfe48948a53a4c87b048a3,
+        type: 3}
+      pilePosition: {x: -1, y: 0}
   blockTypes:
   - blockIndex: 0
     blockSprite: {fileID: 21300000, guid: b3c1154c2e2b47643a99e5df18ea0b2f, type: 3}
   - blockIndex: 1
     blockSprite: {fileID: 21300000, guid: ee97c632c103abd459a99aa56fa3eca1, type: 3}
-  threeStarTimeLimit: 0
-  twoStarTimeLimit: 0
+  threeStarTimeLimit: 100
+  twoStarTimeLimit: 200
   lockedSprite: {fileID: 21300000, guid: 1233f394cda6245868bfa4f60a404868, type: 3}
   nonStarSprite: {fileID: 21300000, guid: 3b988e155761e4104a991ec98f9174ba, type: 3}
   starSprite: {fileID: 21300000, guid: eef9b7fdf80b7441c8e5c5c22095c30d, type: 3}

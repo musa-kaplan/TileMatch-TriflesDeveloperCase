@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using MusaUtils.Templates.HyperCasual;
@@ -38,6 +39,7 @@ namespace InGame
 
         private void CheckBlocks()
         {
+            var isBlasting = false;
             for (var i = 0; i < blocks.Count; i++)
             {
                 int count = 0;
@@ -61,13 +63,17 @@ namespace InGame
                     }
                     
                     BlastBlocks(blockList);
+                    isBlasting = true;
+                    break;
                 }
             }
-
+            
+            if(isBlasting) return;
             if (currBlockCount >= slots.Count)
             {
                 GameEvents.StateChanged(GameStates.Lose);
             }
+
         }
 
         private void SetBlockPositions()
@@ -86,6 +92,7 @@ namespace InGame
                 await UniTask.Delay(TimeSpan.FromSeconds(.15f));
             }
             currBlockCount -= 3;
+            GameEvents.CheckLevelWin();
         }
 
         private void OnEnable()

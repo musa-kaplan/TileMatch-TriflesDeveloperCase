@@ -4,8 +4,10 @@ using Cysharp.Threading.Tasks;
 using Data;
 using General;
 using MusaUtils;
+using MusaUtils.Pooling;
 using MusaUtils.Templates.HyperCasual;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace InGame
 {
@@ -34,13 +36,23 @@ namespace InGame
         private DataContainer dataContainer;
         private List<BlockBehaviours> blocks = new List<BlockBehaviours>();
 
-        public GameStates currState;
+        public GameStates currState = GameStates.Enterance;
+        [HideInInspector] public LevelData currentLevel;
+        private int totalBlockCount;
+        private int currLevelIndex;
         public float gameTimer;
 
         private void Start()
         {
             dataContainer = DataContainer.dataContainer;
-            SetLevel(dataContainer.levels[PlayerPrefs.GetInt("Level")]);
+
+            currLevelIndex = PlayerPrefs.GetInt("Level");
+            currentLevel =
+                dataContainer.levels[
+                    currLevelIndex > (dataContainer.levels.Count - 1)
+                        ? Random.Range(0, dataContainer.levels.Count)
+                        : currLevelIndex];
+            SetLevel(currentLevel);
         }
 
         private void Update()
@@ -69,6 +81,7 @@ namespace InGame
                         if (pile.transform.GetChild(k).TryGetComponent(out BlockBehaviours blockBehaviours))
                         {
                             blocks.Add(blockBehaviours);
+                            totalBlockCount++;
                         }
                     }
                 }
@@ -79,32 +92,40 @@ namespace InGame
 
         private void SetBlocks(LevelData data)
         {
-            var totalCount = 0;
-            for (var i = 0; i < (blocks.Count / 3); i++)
+            var totalCount = blocks.Count / 3;
+
+            for (var i = 0; i < totalCount; i++)
             {
                 var blockInfo = i < data.blockTypes.Count ? data.blockTypes[i] : data.blockTypes.FromList();
                 for (var j = 0; j < 3; j++)
                 {
-                    var block = blocks[totalCount];
+                    var block = blocks.FromList();
+                    Debug.Log(blockInfo.blockIndex + " => " + block.GetInstanceID());
                     block.myInfo = blockInfo;
                     block.SetMe();
-                    totalCount++;
+                    blocks.Remove(block);
                 }
             }
         }
 
-        private async void CheckLevelWin(BlockBehaviours b)
+        private async void CheckLevelWin()
         {
-            blocks.Remove(b);
-            if (blocks.Count <= 0)
+            totalBlockCount -= 3;
+            if (totalBlockCount <= 0)
             {
-                var currLevel = dataContainer.levels[PlayerPrefs.GetInt("Level")];
-                currLevel.isCompleted = true;
+                currentLevel.isCompleted = true;
+                if (currLevelIndex < (dataContainer.levels.Count - 1))
+                {
+                    dataContainer.levels[currLevelIndex + 1].isUnlocked = true;
+                }
                 
-                if (gameTimer <= currLevel.twoStarTimeLimit) {currLevel.earnedStars = gameTimer <= currLevel.threeStarTimeLimit ? 3 : 2; }
-                else { currLevel.earnedStars = 1; }
+                if (gameTimer <= currentLevel.twoStarTimeLimit) {currentLevel.earnedStars = gameTimer <= currentLevel.threeStarTimeLimit ? 3 : 2; }
+                else { currentLevel.earnedStars = 1; }
                 
-                await UniTask.Delay(TimeSpan.FromSeconds(1f));
+                WalletManager.IncreaseCurrency(CurrencyType.Cup, currentLevel.earnedStars * 6);
+                currentLevel.Save();
+
+                await UniTask.Delay(TimeSpan.FromSeconds(2f));
                 GameEvents.StateChanged(GameStates.Win);
             }
         }
@@ -116,13 +137,13 @@ namespace InGame
 
         private void OnEnable()
         {
-            GameEvents.onBlockBlasted += CheckLevelWin;
+            GameEvents.onCheckLevelWin += CheckLevelWin;
             GameEvents.onStateChanged += GameStateChanged;
         }
 
         private void OnDisable()
         {
-            GameEvents.onBlockBlasted -= CheckLevelWin;
+            GameEvents.onCheckLevelWin -= CheckLevelWin;
             GameEvents.onStateChanged -= GameStateChanged;
         }
     }

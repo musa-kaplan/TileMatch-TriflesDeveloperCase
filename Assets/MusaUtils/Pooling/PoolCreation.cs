@@ -10,8 +10,7 @@ namespace MusaUtils.Pooling
         {
             for (int i = 0; i < c; i++)
             {
-                _currObj = Instantiate(b);
-                _currObj.transform.parent = FindObjectOfType<AquaPoolMono>()?.transform;
+                _currObj = Instantiate(b, FindObjectOfType<AquaPoolMono>()?.transform, false);
                 l.Add(_currObj);
                 _currObj.SetActive(false);
             }

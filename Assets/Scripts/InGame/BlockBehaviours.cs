@@ -1,9 +1,12 @@
 using System;
 using Cysharp.Threading.Tasks;
+using Data;
 using DG.Tweening;
 using General;
 using MusaUtils.Templates.HyperCasual;
+using Ui;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace InGame
 {
@@ -32,6 +35,7 @@ namespace InGame
             if(isLocked) return;
             if (CanHopUp())
             {
+                if (!currState.Equals(GameStates.Started)) { GameEvents.StateChanged(GameStates.Started); }
                 dataContainer.BlockClicked();
                 isDone = true;
                 LetsHopUp();
@@ -54,7 +58,9 @@ namespace InGame
         {
             if (b.Equals(this))
             {
-                dataContainer.particleManager.PlayParticle(ParticleTypes.BlockBlast, transform.position);
+                var position = transform.position;
+                CurrencyInteraction.CurrencyGained(CurrencyType.Gold, 1, position);
+                dataContainer.particleManager.PlayParticle(ParticleTypes.BlockBlast, position);
                 gameObject.SetActive(false);
             }
         }

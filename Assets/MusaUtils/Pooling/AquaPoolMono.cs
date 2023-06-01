@@ -11,6 +11,7 @@ namespace MusaUtils.Pooling
         {
             foreach (var p in _pools)
             {
+                AquaPoolManager.PoolInit().RemovePool(p);
                 AquaPoolManager.PoolInit().Create(p);
             }
         }

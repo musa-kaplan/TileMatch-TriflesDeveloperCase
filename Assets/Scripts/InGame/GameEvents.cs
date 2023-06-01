@@ -11,6 +11,9 @@ namespace InGame
         public static event Action<BlockBehaviours> onBlockBlasted;
         public static void BlockBlasted(BlockBehaviours blockBehaviours) => onBlockBlasted?.Invoke(blockBehaviours);
         
+        public static event Action onCheckLevelWin;
+        public static void CheckLevelWin() => onCheckLevelWin?.Invoke();
+        
         public static event Action<GameStates> onStateChanged;
         public static void StateChanged(GameStates state) => onStateChanged?.Invoke(state);
     }
